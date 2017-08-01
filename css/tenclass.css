@@ -1,0 +1,87 @@
+@charset "utf-8";
+/* CSS Document */
+a{-moz-transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;}
+*{
+	margin: 0;padding: 0;
+}
+/* 清除浮动 */
+.clearfix:before,.clearfix:after{content:"";display:table;}
+.clearfix:after{clear:both;overflow:hidden;}
+.clearfix{zoom:1; }/* for ie6 & ie7 */
+
+/* 定位 */
+.posirel{position: relative;}
+.posiabs{position: absolute;}
+.posifixed{position: fixed;}
+
+.banner{width: 100%;height: 580px;margin:0 auto;background:url("../image/ten/bannerbg.jpg")/*tpa=http://www.junengjiaoyu.com/image/ten/bannerbg.jpg*/ no-repeat center top;}
+.bannerMain{position: relative;width: 1200px;height: 580px;margin:0 auto;}
+.banner a{position: absolute;width:246px;height: 115px;top: 407px;overflow: hidden;}
+.banner a img{position: absolute;left: 0;bottom: 0;}
+.banner a.bannerbtn1{left: 172px;}
+.banner a.bannerbtn2{left: 462px;}
+.banner a.bannerbtn3{left: 751px;}
+.banner a:hover{height: 152px;}
+
+.ten1{width: 100%;background: #89c997;margin:0 auto;height: 363px;}
+.tenMain1{width: 1200px;margin:0 auto;padding-top: 25px;}
+.tenMain1 h2{text-align: center;font-size: 30px;color: #fff;line-height:100px;font-family: "微软雅黑";}
+
+.ten2{width: 100%;margin:0 auto;background: url("../image/ten/ten2bg.jpg")/*tpa=http://www.junengjiaoyu.com/image/ten/ten2bg.jpg*/ no-repeat center top;}
+.tenMain2{width: 1200px;margin:0 auto;text-align: center;position: relative;}
+.tenMain2 a{display: block;width: 153px;height: 82px;position: absolute;left: 523px;top: 545px;z-index: 3;}
+
+.ten3{width: 100%;margin:0 auto;padding-bottom: 55px;}
+.tenMain3{width: 1200px;margin:0 auto;}
+.ten3_box{width: 950px;height:230px;margin:0 auto;}
+.ten3_list{width:758px;height: 230px;overflow: hidden;position: relative;}
+.ten3_list h3{width: 43px;height:180px;text-align: center;line-height: 30px;font-size: 24px;color: #fff;padding-top: 50px;margin:0;cursor: pointer;position: absolute;left: 0;top: 0; }
+.ten3_list h3 span{font-size: 24px;display: block;text-align: center;font-weight: bold;}
+.ten3_cont{width: 715px;height:230px;background: #eee;position: absolute;left: 43px;top: 0;}
+.ten3_cont>div{padding:25px 40px 25px 40px;}
+.ten3_cont h4{font-size: 24px;line-height: 55px;color: #f05f4c;}
+.ten3_cont p{line-height: 25px;font-size:18px;color: #333;}
+
+.ten4{width: 100%;height:699px;background: url("../image/ten/ten4bg.jpg")/*tpa=http://www.junengjiaoyu.com/image/ten/ten4bg.jpg*/ repeat-x left top;}
+.tenMain4{width: 1200px;margin:0 auto;text-align: center;}
+.tenMain4 a{display: block;width: 234px;height: 55px;text-align: center;line-height: 55px;background: #f46700;font-size: 18px;color: #fff;margin: 30px auto 0 auto;border-radius: 3px;}
+
+.ten5{width: 100%;margin:0 auto;background: url("../image/ten/ten5bg.jpg")/*tpa=http://www.junengjiaoyu.com/image/ten/ten5bg.jpg*/ no-repeat center top;}
+.tenMain5{width: 1200px;margin:0 auto;text-align: center;position: relative;}
+.tenMain5 a.ten5bm{position: absolute;left: 498px;top:535px;z-index: 3;display: block;width: 234px;height: 55px;text-align: center;line-height: 55px;background: #32b16c;font-size: 18px;color: #fff;border-radius: 3px;}
+a.ten5a{display: block;position: absolute;z-index: 3;}
+a.ten5a1{width: 135px;height: 44px;left: 306px;top: 349px;}
+a.ten5a2{width: 164px;height: 54px;left: 512px;top: 336px;}
+a.ten5a3{width: 137px;height: 44px;left: 749px;top: 347px;}
+
+.ten6{width: 100%;margin:0 auto;background:#f5f5f5;}
+.tenMain6{width: 1200px;margin:0 auto;text-align: center;}
+
+.ten7{width: 100%;height: 634px;margin:0 auto;background: url("../image/ten/ten4bg.jpg")/*tpa=http://www.junengjiaoyu.com/image/ten/ten4bg.jpg*/ repeat-x left top;}
+.tenMain7{width: 987px;margin:0 auto;padding-top:50px; }
+.tenMain7 > img{margin-top: 30px;}
+.ten7 .stu_cont{width: 613px;margin-left:58px;}
+.ten7 .stu_cont > a{display: block;width:27px;height: 44px;margin-top:234px;}
+.ten7 .stu_cont > a.stu_prev{background: url("../image/ten/prev.png")/*tpa=http://www.junengjiaoyu.com/image/ten/prev.png*/ no-repeat 0px 0px;}
+.ten7 .stu_cont > a.stu_next{background: url("../image/ten/next.png")/*tpa=http://www.junengjiaoyu.com/image/ten/next.png*/ no-repeat 0px 0px;}
+.ten7 .stu_cont > a.stu_prev:hover{background: url("../image/ten/prevon.png")/*tpa=http://www.junengjiaoyu.com/image/ten/prevon.png*/ no-repeat 0px 0px;}
+.ten7 .stu_cont > a.stu_next:hover{background: url("../image/ten/nexton.png")/*tpa=http://www.junengjiaoyu.com/image/ten/nexton.png*/ no-repeat 0px 0px;}
+.ten7 .stu_box1{width: 515px;}
+.ten7 .stu_li{width: 515px;}
+.ten7 .stu_li .stu_hp_txt{width: 222px;margin-left: 35px;}
+.ten7 .stu_li .stu_hp_txt img{margin: 30px auto 0 auto;display: block;}
+.ten7 .stu_li .stu_hp_txt h3{line-height: 30px;color:#fff;font-size:18px;color: #333;text-align: center;}
+.ten7 .stu_li .stu_hp_txt p.stuclass{font-size: 14px;color: #333;line-height: 25px;text-align: center;}
+.ten7 .stu_li .stu_hp_txt p.studes{background: #fff;padding: 25px 20px 25px 30px;border-radius: 5px;color: #f46700;line-height:25px;font-size: 14px;margin-top: 40px;position: relative;}
+.ten7 .stu_li .stu_hp_txt p.studes img{position: absolute;left: 100px;top: -45px;}
+
+
+
+
+
+
+
+

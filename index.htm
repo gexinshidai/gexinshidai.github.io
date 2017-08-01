@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="chinaz-site-verification" content="bd0ce726-cba8-482b-90cb-bcb71ff4cb87"/>
+
+    <title> 革新教育 北京_家教_小学初中1对1_家教</title>
+    <meta name="description"
+          content="聚能教育创立全国1对1家教辅导教学模式,聚能教育拥有众多小学,初中,高中1对1家教辅导专家团队,帮助学生快速提高小升初,中考,高考成绩,请家教热线:400-621-6688."/>
+    <meta name="keywords" content="革新教育,北京革新教育,北京家教,北京上门家教辅导,小学1对1,中学1对1"/>
+
+    <link type="text/css" href="css/menu.css" rel="stylesheet"/>
+    <script src="js/jquery-1.8.2.min.js"></script>
+
+    <script type="text/javascript" src="js/menu.js" ></script>
+    <link rel="stylesheet" type="text/css" href="css/demo2.css" >
+    <link rel="stylesheet" type="text/css" href="css/css.css" >
+    <script language="javascript" type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"
+            ></script>
+    <script language="javascript" type="text/javascript" src="js/jquery.touchSlider.js"
+           ></script>
+    <script language="javascript" type="text/javascript" src="js/index.js"
+            ></script>
+    <script>
+        //        $(function () {
+        //            if (navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {
+        //                window.location.href = 'http://m.junengjiaoyu.com/';
+        //            }
+        //        })
+    </script>
+    <script>
+        $(function () {
+            var cateMenu = function () {
+                var cateLiNum = $(".cateMenu li").length;
+                $(".cateMenu li").each(function (index, element) {
+                    if (index < cateLiNum - 0) {
+                        $(this).mouseenter(function () {
+                            var ty = $(this).offset().top - 168;
+                            var obj = $(this).find(".list-item");
+                            var sh = document.documentElement.scrollTop || document.body.scrollTop;
+                            var oy = ty + (obj.height() + 30) + 168 - sh;
+                            var dest = oy - $(window).height()
+                            if (oy > $(window).height()) {
+                                ty = ty - dest - 10;
+                            }
+                            if (ty < 0) ty = 0;
+                            $(this).addClass("on");
+                            obj.show();
+                            $(".cateMenu li").find(".list-item").stop().animate({"top": ty});
+                            obj.stop().animate({"top": ty});
+                        })
+                        $(this).mouseleave(function () {
+                            $(this).removeClass("on");
+                            $(this).find(".list-item").hide();
+                        })
+                    }
+                });
+                $(".cateMenu").show();
+                $(".navCon_on").hover(function () {
+
+                        $(".cateMenu").show();
+                        $(".navCon-cate-title").addClass("hover");
+
+                    },
+                    function () {
+                        $(".cateMenu").show();
+                        $(".navCon-cate-title").removeClass("hover");
+                    })
+
+            }();
+
+        });
+
+
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            var sWidth = $("#focus").width(); //获取焦点图的宽度（显示面积）
+            var len = $("#focus ul li").length; //获取焦点图个数
+            var index = 0;
+            var picTimer;
+
+            //以下代码添加数字按钮和按钮后的半透明条，还有上一页、下一页两个按钮
+            var btn = "<div class='btnBg'></div><div class='btn'>";
+            for (var i = 0; i < len; i++) {
+                btn += "<span></span>";
+            }
+            btn += "</div><div class='preNext pre'></div><div class='preNext next'></div>";
+            $("#focus").append(btn);
+            $("#focus .btnBg").css("opacity", 1.0);
+
+            //为小按钮添加鼠标滑入事件，以显示相应的内容
+            $("#focus .btn span").css("opacity", 0.4).mouseover(function () {
+                index = $("#focus .btn span").index(this);
+                showPics(index);
+            }).eq(0).trigger("mouseover");
+
+            //上一页、下一页按钮透明度处理
+            $("#focus .preNext").css("opacity", 0.2).hover(function () {
+                $(this).stop(true, false).animate({"opacity": "0.5"}, 300);
+            }, function () {
+                $(this).stop(true, false).animate({"opacity": "0.2"}, 300);
+            });
+
+            //上一页按钮
+            $("#focus .pre").click(function () {
+                index -= 1;
+                if (index == -1) {
+                    index = len - 1;
+                }
+                showPics(index);
+            });
+
+            //下一页按钮
+            $("#focus .next").click(function () {
+                index += 1;
+                if (index == len) {
+                    index = 0;
+                }
+                showPics(index);
+            });
+
+            //本例为左右滚动，即所有li元素都是在同一排向左浮动，所以这里需要计算出外围ul元素的宽度
+            $("#focus ul").css("width", sWidth * (len));
+
+            //鼠标滑上焦点图时停止自动播放，滑出时开始自动播放
+            $("#focus").hover(function () {
+                clearInterval(picTimer);
+            }, function () {
+                picTimer = setInterval(function () {
+                    showPics(index);
+                    index++;
+                    if (index == len) {
+                        index = 0;
+                    }
+                }, 4000); //此4000代表自动播放的间隔，单位：毫秒
+            }).trigger("mouseleave");
+
+            //显示图片函数，根据接收的index值显示相应的内容
+            function showPics(index) { //普通切换
+                var nowLeft = -index * sWidth; //根据index值计算ul元素的left值
+                $("#focus ul").stop(true, false).animate({"left": nowLeft}, 300); //通过animate()调整ul元素滚动到计算出的position
+                //$("#focus .btn span").removeClass("on").eq(index).addClass("on"); //为当前的按钮切换到选中的效果
+                $("#focus .btn span").stop(true, false).animate({"opacity": "0.4"}, 300).eq(index).stop(true, false).animate({
+                    "opacity": "1",
+                    "background-color": "#00a2e6"
+                }, 300); //为当前的按钮切换到选中的效果
+            }
+        });
+
+    </script>
+
+</head>
+<body>
+<div id="qiao-wrap">
+    <ins id="qiao-icon-wrap" class="qiao-icon-wrap" style="    position: fixed;    top: 80px;right: 0;    z-index: 2147483647">
+        <a style="    position: relative;
+    width: 130px;
+    height: 160px;
+    top:0;
+    background: url(image/chat.png) no-repeat;
+    left: 0px;
+    overflow: hidden;
+    display: block;
+    z-index: 100;"
+           href="tencent://message/?uin=827098869&Menu=yes" target="_blank">
+        </a>
+    </ins>
+</div>
+<!-------top字---------->
+<div style="width: 100%; height: 30px; margin: 0 auto; background-color: #f5f5f5; border-bottom: 1px solid #eaeaea">
+    <div style="height:20px; width:1200px;font-size:10px; color:#9b9b9b;line-height:30px">
+
+        <div style="float:right; width:400px;">
+            <div style="float:left;font-size:12px;">欢迎进入革新教育官方网站！</div>
+
+            <!--<ul class="top_title">-->
+            <!--<li style="float:left; width:55px; margin-right:10px; line-height:12px;height:12px;border-right:1px solid #9b9b9b; margin-top:9px;"><a style=" margin-right: 4px; font-size: 12px;" href="javascript:if(confirm('http://weibo.com/junengxuexiao  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://weibo.com/junengxuexiao'" tppabs="http://weibo.com/junengxuexiao" target="_blank">官方微博</a></li>-->
+            <!--<li style="float:left; line-height:12px; margin-top:9px;height:12px;width:55px; margin-right:10px;border-right:1px solid #9b9b9b">-->
+            <!--<a style=" margin-right: 4px; font-size: 12px;" id="blcshow">官方微信</a>-->
+            <!--<div id="wxshow" style=" width:121px; height:142px; float:right; position:relative; margin-top:0px; z-index:99999; display:none; "><img src="image/wx.jpg" tppabs="http://www.junengjiaoyu.com/image/wx.jpg" width="121px" height="142px" /></div>-->
+            <!--</li>-->
+            <!--<li style="float: left; width: 50px; margin-right: 10px; font-size: 12px;"><a href="javascript:if(confirm('http://www.jmjuneng.com/  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ����һ�����·���ⲿ������Ϊ������ʼ��ַ�ĵ�ַ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.jmjuneng.com/'" tppabs="http://www.jmjuneng.com/" target="_blank">加入聚能</a></li>-->
+            <!--</ul>-->
+        </div>
+
+
+    </div>
+</div>
+
+
+<!-------top图------>
+<div style=" height:52px;margin-top:10px; width:1200px; margin:0 auto;padding-top:8px;">
+    <ul class="top_logo">
+        <li><a href="index.htm" ><img src="image/logo.png" /></a>
+        </li>
+        <li><img src="image/top_tel.png"
+                 style="margin-top:30px;"/></li>
+        <!--搜索-->
+        <!--<li>-->
+        <!--<div class="seach-qgz">-->
+        <!--<div class="seacher-lf-bx">-->
+        <!---->
+        <!--<select name="ChooseResult" id="ChooseResult" class="select-fg">-->
+        <!--<option selected="selected">请选择</option>-->
+        <!--<option>课程</option>-->
+        <!--<option>资讯</option>-->
+        <!--</select>-->
+        <!--<input name="SeacherContent" id="SeacherContent" onfocus="Ffocus()" type="text" value="搜索你需要的内容" class="i-box-b">-->
+        <!--</div>-->
+        <!--<input name="SearchResult" id="SearchResult" type="button" class="button-i-ss" value="搜索">-->
+        <!--</div>-->
+        <!--<script type="text/javascript" src="js/jquery.select.js" tppabs="http://www.junengjiaoyu.com/js/jquery.select.js"></script>-->
+        <!--</li>-->
+    </ul>
+
+</div>
+
+<!------------->
+<div style=" width:100%">
+    <div id="main">
+        <div style="width:0 auto; background-color:#d63665; height:45px; top:9px; width: 100%;">
+            <div style="width:1200px; margin:0 auto">
+
+                <div id="nav">
+                    <div class="navCon w1020">
+                        <div class="navCon-cate fl navCon_on">
+                            <div class="navCon-cate-title"><a href="javascript:void(0)">快速提分导航</a></div>
+                            <div class="cateMenu hide" style="display: none; width:189px;">
+                                <ul>
+                                    <li style="border-top:none;" class="mod_cate1">
+                                        <div class="cate-tag">
+                                            <strong style=" ">
+                                                <img style="margin-top:8px;left:25px;margin-top:16px; position: absolute"
+                                                     src="image/xiao.png"
+                                                     /><a href=""
+                                                                                                             style="font-size:14px;font-family:宋体; font-weight:100; margin-left:3px;">小学课程</a>
+
+                                                <i class="arrow_dot1"><img src="image/jt.png"
+                                                                           /></i></strong>
+                                        </div>
+                                        <div class="list-item hide" style="display: none; top: -5px;">
+                                            <ul class="itemleft">
+                                                <dl>
+                                                    <dt>小学辅导课程</dt>
+
+
+                                                    <i class="mod_subcate_line1"></i>
+                                                    <dd>
+
+                                                        <a target="_blank" href="Course/List/35/5.htm"
+                                                           >一年级</a>
+                                                        <div style='height:14px; margin-top:4px; width:1px; border-left:1px solid #000;float:left;'></div>
+                                                        <a target="_blank" href="Course/List/36/5.htm"
+                                                           >二年级</a>
+                                                        <div style='height:14px; margin-top:4px; width:1px; border-left:1px solid #000;float:left;'></div>
+                                                        <a target="_blank" href="Course/List/37/5.htm"
+                                                           >三年级</a>
+                                                        <div style='height:14px; margin-top:4px; width:1px; border-left:1px solid #000;float:left;'></div>
+                                                        <a target="_blank" href="Course/List/38/5.htm"
+                                                           >四年级</a>
+                                                        <div style='height:14px; margin-top:4px; width:1px; border-left:1px solid #000;float:left;'></div>
+                                                        <a target="_blank" href="Course/List/39/5.htm"
+                                                           >五年级</a>
+                                                        <div style='height:14px; margin-top:4px; width:1px; border-left:1px solid #000;float:left;'></div>
+                                                        <a target="_blank" href="Course/List/40/5.htm"
+                                                           >六年级</a>
+                                                    </dd>
+                                                </dl>
+                                            </ul>
+                                            <ul class="itemright"></ul>
+                                        </div>
+                                    </li>
+                                    <li style="border-top:none;" class="mod_cate1">
+                                        <div class="cate-tag">
+                                            <strong style=" ">
+                                                <img style="margin-top:8px;left:25px;margin-top:16px; position: absolute"
+                                                     src="image/chu.png"
+                                                     tppabs="http://www.junengjiaoyu.com/image/chu.png"/><a href=""
+                                                                                                            style="font-size:14px;font-family:宋体; font-weight:100; margin-left:3px;">初中课程</a>
+
+                                                <i class="arrow_dot1"><img src="image/jt.png"
+                                                                           /></i></strong>
+                                        </div>
+                                        <div class="list-item hide" style="display: none; top: -5px;">
+                                            <ul class="itemleft">
+                                                <dl>
+                                                    <dt>初中辅导课程</dt>
+
+
+                                                    <i class="mod_subcate_line1"></i>
+                                                    <dd>
+
+                                                        <a target="_blank" href="Course/List/41/4.htm"
+                                                           >初一</a>
+                                                        <div style='height:14px; margin-top:4px; width:1px; border-left:1px solid #000;float:left;'></div>
+                                                        <a target="_blank" href="Course/List/42/4.htm"
+                                                           >初二</a>
+                                                        <div style='height:14px; margin-top:4px; width:1px; border-left:1px solid #000;float:left;'></div>
+                                                        <a target="_blank" href="Course/List/43/4.htm"
+                                                           >初三</a>
+                                                    </dd>
+                                                </dl>
+                                            </ul>
+                                            <ul class="itemright"></ul>
+                                        </div>
+                                    </li>
+
+                                    <li style="border-top:none;" class="mod_cate1">
+                                        <div class="cate-tag">
+                                            <strong style=" ">
+                                                <img style="margin-top:8px;left:25px;margin-top:16px; position: absolute"
+                                                     src="image/te.png"
+                                                     /><a href=""
+                                                                                                           style="font-size:14px;font-family:宋体; font-weight:100; margin-left:3px;">特色课程</a>
+
+                                                <i class="arrow_dot1"><img src="image/jt.png"
+                                                                           /></i></strong>
+                                        </div>
+                                        <div class="list-item hide" style="display: none; top: -5px;">
+                                            <ul class="itemleft">
+                                                <dl>
+                                                    <dt>特色辅导课程</dt>
+
+
+                                                    <i class="mod_subcate_line1"></i>
+                                                    <dd>
+
+                                                        <a target="_blank" href="">初中</a>
+                                                        <div style='height:14px; margin-top:4px; width:1px; border-left:1px solid #000;float:left;'></div>
+                                                        <a target="_blank" href="">小学</a>
+                                                    </dd>
+                                                </dl>
+                                            </ul>
+                                            <ul class="itemright"></ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--------标题栏------->
+                <div id="menu">
+                    <ul class="menu">
+                        <li><a href="#" class="parent"><span style="color:#fff">首页</span></a></li>
+                        <li>
+                            <a href=""><span
+                                    style="color:#fff">小学课程</span></a>
+                            <ul>
+                                <li>
+                                    <a href="">小学一年级</a>
+                                </li>
+                                <li>
+                                    <a href="">小学二年级</a>
+                                </li>
+                                <li>
+                                    <a href="">小学三年级</a>
+                                </li>
+                                <li>
+                                    <a href="">小学四年级</a>
+                                </li>
+                                <li>
+                                    <a href="">小学五年级</a>
+                                </li>
+                                <li>
+                                    <a href="">小学六年级</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=""><span
+                                    style="color:#fff">初中课程</span></a>
+                            <ul>
+                                <li>
+                                    <a href="">初中一年级</a>
+                                </li>
+                                <li>
+                                    <a href="">初中二年级</a>
+                                </li>
+                                <li>
+                                    <a href="">初中三年级</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href=""><span
+                                    style="color:#fff">家教预约</span></a>
+
+                        </li>
+                        <li>
+                            <a href=""><span class="navhover" style="color:#fff">关于我们</span></a>
+                            <ul>
+                                <li>
+                                    <a href="">公司介绍</a></li>
+                                <li>
+                                    <a href="">发展历程</a></li>
+                                <li>
+                                    <a href="">荣誉资质</a></li>
+                                <li>
+                                    <a href="">企业文化</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--第一屏开始--->
+<div class="main_body" style="height:560px;">
+    <div style="float:left; width:940px; ">
+        <!--banner开始-->
+        <div id="focus">
+            <ul>
+                <li><a href="javascript:;" ><img
+                        src="upfile/2017-7/215201771317233936.jpg"
+                         alt=""/></a></li>
+                <li><a href="javascript:;"
+                       ><img
+                        src="upfile/2017-7/319201772013613785.png"
+                         alt=""/></a></li>
+                <li><a href="javascript:;"
+                       ><img
+                        src="upfile/2016-5/636201654174758_0.jpg"
+                         alt=""/></a></li>
+                <li><a href="javascript:;" ><img
+                        src="upfile/2017-6/657201767161237881.jpg"
+                         alt=""/></a></li>
+
+
+            </ul>
+        </div><!--focus end-->
+
+        <!--banner结束-->
+        <div style="width:1200px; margin:0 auto;">
+            <ul class="tuijian_ul">
+                <li style="width: 189px; margin-left: 0px;"><a
+                        href=""><img width="189px" src="image/youxue.jpg"/></a>
+                </li>
+                <li style="width:187px;"><a
+                        href=""><img width="187"
+                                                                                                 src="image/shenqing.jpg"
+                                                                                                 /></a>
+                </li>
+                <li style="width:187px;"><a
+                        href=""><img width="187"
+                                                                                                 src="image/ykwhk.png"
+                                                                                                /></a>
+                </li>
+                <li style="width:186px;"><a
+                        href=""><img width="186"
+                                                                                                        src="image/155zsdbp.png"
+                                                                                                        /></a>
+                </li>
+                <li style=" width: 186px;"><a
+                        href=""><img width="186"
+                                                                                               src="image/yanxue.jpg"
+                                                                                               /></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div style=" float:left; width:250px; margin-left:5px; height:500px">
+        <div style="width:250px; float:left; height:200px">
+            <!--右上-->
+            <div class="badaul_left">
+                <ul>
+                    <li class="bd1" style="border-bottom:0px; border-right:0px;">
+                        <div class="bdline1"><a
+                                href=""><em></em></a></div>
+                    </li>
+                    <li class="bd2" style="border-bottom: 0px; border-right: 0px;">
+                        <div class="bdline2"><a
+                                href=""><em></em></a><br></div>
+                    </li>
+                    <li class="bd3" style="border-bottom:0px;">
+                        <div class="bdline3"><a href="javascript:;"
+                                                onclick=""><em></em></a><br>
+                        </div>
+                    </li>
+                    <li class="bd6" style="border-right:0px;">
+                        <div class="bdline6"><a
+                                href=""><em></em></a><br></div>
+                    </li>
+                    <li class="bd5" style="border-right:0px;">
+                        <div class="bdline5"><a
+                                href=""><em></em></a><br>
+                        </div>
+                    </li>
+                    <li class="bd4">
+                        <div class="bdline4"><a href="javascript:;" id="wx_jyq"><em></em></a><br></div>
+                    </li>
+                    <div id="jyqshow"
+                         style=" width:181px; height:181px; float:right; position:relative; margin-top:0px; z-index:99999; display:none; ">
+                        <img src="image/jyq.jpg" tppabs="http://www.junengjiaoyu.com/image/jyq.jpg" width="181px"
+                             height="181px;"/></div>
+                </ul>
+            </div>
+
+        </div>
+        <div style="float:left">
+            <div class="slideTxtBox2">
+                <div class="hd">
+                    <ul>
+                        <li>革新动态</li>
+                        <li>媒体报道</li>
+                        <li>最新活动</li>
+
+                </div>
+                <div class="bd">
+                    <div style="display: block;">
+                        <ul>
+                            <li>
+                                <a href=""> 聚能服务赢点赞 校区满意赠锦旗</a></li>
+                            <li>
+                                <a href=""> 聚能教育学院路校区足履实地蓄势待发</a></li>
+                            <li>
+                                <a href=""> 聚能教育集团副总裁臧术东一行赴广西柳</a></li>
+                            <li>
+                                <a href=""> 今天，我们的课堂在户外 ——聚能教育</a></li>
+                            <li>
+                                <a href=""> 聚能教育专家中考解析讲座：面谈改革新</a></li>
+                            <li>
+                                <a href=""> 天道酬勤&#183;聚能教育外阜校区高考喜报</a>
+                            </li>
+                            <li>
+                                <a href=""> 成绩斐然&#183;聚能教育外阜校区2017中</a>
+                            </li>
+                            <li>
+                                <a href=""> 员工生日会 ▏火红7月 聚能为您庆生</a></li>
+                        </ul>
+                    </div>
+                    <div style="display: none;">
+                        <ul>
+                            <li>
+                                <a href=""> 聚能教育启动全新引擎&#160;5A标准服务体</a>
+                            </li>
+                            <li>
+                                <a href=""> 聚贤育能 日新月异 聚能教育集团</a></li>
+                            <li>
+                                <a href=""> 中国民生银行与聚能教育正式开展全方位</a></li>
+                            <li>
+                                <a href=""> 聚能游学：以“五心”服务树行业标杆</a></li>
+                            <li>
+                                <a href=""> 聚能教育与天津卫视达成广告战略合作 </a></li>
+                            <li>
+                                <a href=""> 聚能教育引领财富复制新时代</a></li>
+                            <li>
+                                <a href=""> 聚能教育一天8家加盟背后透露着什么</a></li>
+                            <li>
+                                <a href=""> 聚能教育为何赢得家长百分百满意</a></li>
+                        </ul>
+                    </div>
+                    <div style="display: none;">
+                        <ul>
+                            <li>
+                                <a href="" target="_blank">
+                                    聚能教育北京校区“好课同享 约惠暑假</a></li>
+                            <li><a href="javascript:;"
+                                   onclick="">高考复读班开课了</a>
+                            </li>
+                            <li><a href="javascript:;"
+                                   onclick="">2018年中考目标班，保分数，保名校</a>
+                            </li>
+                            <li><a href="javascript:;"
+                                   onclick="">秋季辅导火爆招生中</a>
+                            </li>
+                            <li><a href="javascript:;"
+                                   onclick="">18元抢价值350元名师1对1试听课</a>
+                            </li>
+                            <li><a href="javascript:;"
+                                   onclick="">全年杯赛大联盟助攻小升初胜利势在必得</a>
+                            </li>
+                            <li><a href="javascript:;"
+                                   onclick="">高考复读走捷径海外名校一步到位</a>
+                            </li>
+                            <li><a href="javascript:;"
+                                   onclick="">2018年高考定向签约班，直达目标</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript"> jQuery(".slideTxtBox2").slide();</script>
+        </div>
+    </div>
+
+</div>
+<!--第一屏结束-->
+<div style=" width:1200px; margin:0 auto;">
+    <div class="zixun1"><img src="image/1.png" />
+        <h1>1对1 精品小班</h1></div>
+    <div class="slideTxtBox3">
+
+        <div class="hd">
+            <ul>
+                <li class="">方案定制</li>
+                <li class="on">N对1服务</li>
+                <li class="">智能辅学</li>
+                <li class="">过程管控</li>
+
+            </ul>
+        </div>
+        <div class="bd">
+
+
+            <div style="display: none; ">
+                <img src="image/zhuanshu.jpg" />
+            </div>
+
+            <div style="display: none; ">
+                <img src="image/nd1.jpg" />
+            </div>
+
+
+            <div style="display: none;">
+                <img src="image/nd2.jpg" />
+            </div>
+
+
+            <div style="display: none;">
+                <img src="image/nd3.jpg" />
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <script type="text/javascript">
+        jQuery(".slideTxtBox3").slide();</script>
+
+</div>
+<!--第二屏开始-->
+
+<div class="clear"></div>
+
+<div style="height:300px; width:1200px; margin:0px auto;">
+    <div class="zixun4"><img src="image/1.png" tppabs="http://www.junengjiaoyu.com/image/1.png"/>
+        <h1>最新活动</h1></div>
+    <div class="clear"></div>
+    <div class="badaul_left2" style="margin-top:30px">
+
+        <ul>
+            <li class="bd7">
+                <div class="bdline7"><em
+                        onclick=""></em>
+                </div>
+            </li>
+            <li class="bd8">
+                <div class="bdline8"><em
+                        onclick=""></em><br>
+                </div>
+            </li>
+            <li class="bd9">
+                <div class="bdline9"><em
+                        onclick=""></em><br>
+                </div>
+            </li>
+            <li class="bd10">
+                <div class="bdline10"><em
+                        onclick=""></em><br>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--第二屏结束-->
+<!--第三屏开始-->
+<div class="clear"></div>
+
+
+<div class="hk"><img src="image/1.png" tppabs="http://www.junengjiaoyu.com/image/1.png"/>
+    <h1>优秀学员</h1></div>
+<div style="height: 386px; width: 100%; background-color: #dfeef9; ">
+    <div style="width:1000px; height:434px; margin:0 auto; background:url(/image/xy_bg.png); position:relative; top:-20px; ">
+
+        <ul class="hk_ul">
+
+            <li style=" margin-left:0px;">
+                <div class="yxxy_top"><a
+                        href="javascript:if(confirm('http://www.junengjiaoyu.com/xueyuan/details/81  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������, �����������, ����Ŀ����ֹͣ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.junengjiaoyu.com/xueyuan/details/81'"
+                        tppabs="http://www.junengjiaoyu.com/xueyuan/details/81"><img
+                        src="upfile/2017-5/7332017515132618646.png"
+                        tppabs="http://www.junengjiaoyu.com/upfile/2017-5/7332017515132618646.png"/></a></div>
+
+                <div class="yxxy_name"><span
+                        onclick="javascript: window.open('http://www.junengjiaoyu.com/xueyuan/details/81')">李皓同学</span>
+                    <p onclick="javascript: window.open('http://www.junengjiaoyu.com/xueyuan/details/81')">
+                        &nbsp; &nbsp; &nbsp; 老师了解李同学的具体情况以后，根据学生的问题为学生制定了个性化教学方案，...</p></div>
+            </li>
+            <li style=" margin-left:7px; ">
+                <div class="yxxy_top"><a
+                        href="javascript:if(confirm('http://www.junengjiaoyu.com/xueyuan/details/79  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������, �����������, ����Ŀ����ֹͣ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.junengjiaoyu.com/xueyuan/details/79'"
+                        tppabs="http://www.junengjiaoyu.com/xueyuan/details/79"><img
+                        src="upfile/2017-5/38820175151328391.png"
+                        tppabs="http://www.junengjiaoyu.com/upfile/2017-5/38820175151328391.png"/></a></div>
+                <div class="yxxy_name"><span
+                        onclick="javascript: window.open('http://www.junengjiaoyu.com/xueyuan/details/79')">金小明同学</span>
+                    <p onclick="javascript: window.open('http://www.junengjiaoyu.com/xueyuan/details/79')">
+                        &nbsp; &nbsp; &nbsp;&nbsp;经过学科学能测评，学管老师为金同学选定数学老师常老师，与一起沟...</p></div>
+            </li>
+            <li style=" margin-left:19px;">
+                <div class="yxxy_top"><a
+                        href="javascript:if(confirm('http://www.junengjiaoyu.com/xueyuan/details/72  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������, �����������, ����Ŀ����ֹͣ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.junengjiaoyu.com/xueyuan/details/72'"
+                        tppabs="http://www.junengjiaoyu.com/xueyuan/details/72"><img
+                        src="upfile/2017-5/366201751513271773.png"
+                        tppabs="http://www.junengjiaoyu.com/upfile/2017-5/366201751513271773.png"/></a></div>
+                <div class="yxxy_name"><span
+                        onclick="javascript: window.open('http://www.junengjiaoyu.com/xueyuan/details/72')">王易泽同学</span>
+                    <p onclick="javascript: window.open('http://www.junengjiaoyu.com/xueyuan/details/72')">
+                        &nbsp; &nbsp; &nbsp; 该学生成绩一直处于优秀状态，自尊心较强，易给自己压力。针对这个学生的基本...</p></div>
+            </li>
+            <li style=" margin-left:15px;">
+                <div class="yxxy_top"><a
+                        href="javascript:if(confirm('http://www.junengjiaoyu.com/xueyuan/details/71  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������, �����������, ����Ŀ����ֹͣ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.junengjiaoyu.com/xueyuan/details/71'"
+                        tppabs="http://www.junengjiaoyu.com/xueyuan/details/71"><img
+                        src="upfile/2017-5/1222017515132446279.png"
+                        tppabs="http://www.junengjiaoyu.com/upfile/2017-5/1222017515132446279.png"/></a></div>
+                <div class="yxxy_name"><span
+                        onclick="javascript: window.open('http://www.junengjiaoyu.com/xueyuan/details/71')">侯瑞同学</span>
+                    <p onclick="javascript: window.open('http://www.junengjiaoyu.com/xueyuan/details/71')">
+                        &nbsp; &nbsp; &nbsp; 对侯同学理科较差的现状，进行基础的夯实，不单单是高三课程，还涉及高中理科...</p></div>
+            </li>
+            <li style=" margin-left:5px;">
+                <div class="yxxy_top"><a
+                        href="javascript:if(confirm('http://www.junengjiaoyu.com/xueyuan/details/69  \n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������, �����������, ����Ŀ����ֹͣ��  \n\n�����ڷ������ϴ���?'))window.location='http://www.junengjiaoyu.com/xueyuan/details/69'"
+                        tppabs="http://www.junengjiaoyu.com/xueyuan/details/69"><img
+                        src="upfile/2017-5/799201751513210925.png"
+                        tppabs="http://www.junengjiaoyu.com/upfile/2017-5/799201751513210925.png"/></a></div>
+                <div class="yxxy_name"><span
+                        onclick="javascript: window.open('http://www.junengjiaoyu.com/xueyuan/details/69')">徐馨同学</span>
+                    <p onclick="javascript: window.open('http://www.junengjiaoyu.com/xueyuan/details/69')">
+                        &nbsp; &nbsp; &nbsp; 聚能教育顶级名师丰富的教学实战经验，帮助中学生把握中考趋势和必考点，提高...</p></div>
+            </li>
+
+
+        </ul>
+    </div>
+</div>
+<!--第三屏结束-->
+<!--第四屏开始-->
+
+
+
+
+
+<div class="theme-popover">
+    <div class="theme-poptit"><a href="javascript:;" title="关闭" class="close">×</a>
+        <h3>聚能教育</h3></div>
+    <div class="theme-popbod" id="meid">
+
+
+    </div>
+</div>
+<div class="theme-popover-mask"></div>
+<script>
+    $(".bf").click(function () {
+        var ul = $(this).attr("sul");
+        var t = show(ul);
+
+        $('.theme-popover-mask').fadeIn(100);
+        $('.theme-popover').slideDown(200);
+        $("#meid").html(t);
+    })
+    $(function () {
+
+
+
+        //var a = $("#main");
+        //var b = a.offset();
+        //$(document).on('scroll', function () {
+        //    var c = $(document).scrollTop();
+        //    if (b.top <= c) {
+        //        a.css({ 'position': 'fixed', 'top': '35px' })
+        //        $(".cateMenu").hide();
+        //        $(".navCon_on").hover(function () {
+
+        //            $(".cateMenu").hide();
+        //            $(".navCon-cate-title").addClass("hover");
+
+        //        },
+        //         function () {
+        //            $(".cateMenu").hide();
+        //            $(".navCon-cate-title").removeClass("hover");
+        //        })
+        //    } else {
+        //        $(".cateMenu").show();
+        //        a.css({ 'position': 'absolute', 'top': '145px' })
+        //    }
+        //});
+
+        $('#zzsc li').hover(function () {
+
+            $('.text', this).stop().animate({
+                height: '160px'
+            });
+        }, function () {
+            $('.text', this).stop().animate({
+                height: '0'
+            });
+        });
+
+
+        $('#blcshow').hover(function () {
+            $("#wxshow").show();
+        }, function () {
+            $("#wxshow").hide();
+        });
+
+        $('#wx_jyq').hover(function () {
+            $("#jyqshow").show();
+        }, function () {
+            $("#jyqshow").hide();
+        });
+
+        $('#outside').click(function () {
+
+            $('.theme-popover-mask').fadeIn(100);
+            $('.theme-popover').slideDown(200);
+        })
+        $('.theme-poptit .close').click(function () {
+            $('.theme-popover-mask').fadeOut(100);
+            $('.theme-popover').slideUp(200);
+        })
+
+    });
+
+</script>
+
+<!--视频结束-->
+<!--最下面-->
+<div style=" width: 100%; background-color: #e5e5e5; margin-top: 50px; background-size: 100%;">
+    <div class="clear"></div>
+
+    <div style="width:1200px;  height:120px; ">
+        <div id="dz">
+            <p>Copyright @ 2017-2017 革新教育(gexinjiaoyu.com) All Rights Reserve</p>
+
+            <p>革新教育 全国热线：********* 京 ICP 备 ********** 号 商业特许经营备案：************</p>
+
+            <p>地址：北京市昌平区****************************</p>
+        </div>
+    </div>
+
+
+</div>
+<div style="height: 104px; width: 100%; background:url(./image/bottom.jpg); "></div>
+<div id="goTopBtn"></div>
+<script type="text/javascript">
+    $("#nav .tit").slide({
+        type: "menu",
+        titCell: ".mod_cate",
+        targetCell: ".mod_subcate",
+        delayTime: 0,
+        triggerTime: 10,
+        defaultPlay: false,
+        returnDefault: true
+    });
+    function focusclick(obj) {
+        window.open(obj);
+    }
+</script>
+<!--返回顶部-->
+<script type="text/javascript">
+    $(window).scroll(function () {
+        var sc = $(window).scrollTop();
+        var rwidth = $(window).width()
+        if (sc > 0) {
+            $("#goTopBtn").css("display", "block");
+            $("#goTopBtn").css("left", (rwidth - 60) + "px")
+        } else {
+            $("#goTopBtn").css("display", "none");
+        }
+    })
+    $("#goTopBtn").click(function () {
+        var sc = $(window).scrollTop();
+        $('body,html').animate({scrollTop: 0}, 500);
+    })
+</script>
+
+<div style=" display:none;">
+
+</div>
+
+</body>
+</html>
+

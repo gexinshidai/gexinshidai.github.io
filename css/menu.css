@@ -1,0 +1,225 @@
+/**
+ *********************************************
+ * Prototype of styles for horizontal CSS-menu
+ * @data 30.06.2009
+ *********************************************
+ * (X)HTML-scheme:
+ *  <div id="menu">
+ *      <ul class="menu">
+ *          <li><a href="#" class="parent"><span>level 1</span></a>
+ *              <ul>
+ *                  <li><a href="#" class="parent"><span>level 2</span></a>
+ *                      <ul><li><a href="#"><span>level 3</span></a></li></ul>
+ *                  </li>
+ *              </ul>
+ *          </li>
+ *          <li class="last"><a href="#"><span>level 1</span></a></li>
+ *      </ul>
+ *  </div>
+ *********************************************
+ */
+
+/* menu::base */
+div#main {
+    height:41px;
+    
+}
+
+div#menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: left;
+	width:1000px;
+}
+div#menu ul.menu {
+     padding-left:5px;
+	height:45px;
+	line-height:45px;
+}
+
+div#menu li {
+    position: relative;
+    z-index: 9;
+    margin: 0;
+    padding: 0 0 0 0;
+    display: block;
+    float: left;
+	width:104px;
+	
+}
+div#menu li:hover {
+   background-color:#bc1b4e
+	
+}
+div#menu li:hover>ul {
+    left: -10px;
+}
+
+div#menu a {
+    position: relative;
+    z-index: 10;
+    height: 41px;
+    display: block;
+    float: left;
+    line-height: 41px;
+    text-decoration: none;
+    font: normal 12px Trebuchet MS;
+}
+.navhover:hover{color:#fff;}
+
+div#menu a:hover, div#menu a:hover { color: #00a2e6; }
+div#menu li.current a { margin-left: 20px;}
+
+div#menu span {display: block;cursor: pointer;background-repeat: no-repeat;background-position: 95% 0;}
+div#menu span:hover{color:#fff;}
+div#menu ul ul a.parent span {background-position:95% 8px; background-image: url("images/item-pointer.gif")/*tpa=http://www.junengjiaoyu.com/css/images/item-pointer.gif*/;}
+div#menu ul ul a.parent:hover span {background-image: url("images/item-pointer-mover.gif")/*tpa=http://www.junengjiaoyu.com/css/images/item-pointer-mover.gif*/;}
+
+/* menu::level1 */
+div#menu a {padding: 0 10px 0 20px;line-height: 45px;height:45px;color: #fff;font-size:16px;}
+div#menu span {margin-top: 0px;}/**@replace#1*/
+div#menu li { background: url("images/main-delimiter.png")/*tpa=http://www.junengjiaoyu.com/css/images/main-delimiter.png*/ 100% 4px no-repeat; height:44px; line-height:44px;width:110px }
+div#menu li.last { background: none; }
+
+/* menu::level2 */
+div#menu ul ul li { background: none;line-height:40px; background-color:#fff;}
+div#menu ul ul {position: absolute;top: 42px;width: 150px;padding: 0;background-color:#fff; margin-top:2px; color:#bc1b4e}
+div#menu ul ul a {padding: 0 0 0 19px;height: auto;float: none;display: block;line-height: 40px;color: #bc1b4e; }
+div#menu ul ul span {margin-top: 0;padding-right: 15px;padding-right: 20px;color: #bc1b4e;font-size:14px;}
+div#menu ul ul a:hover span {color: #bc1b4e;}
+div#menu ul ul li.last { background: none; }
+div#menu ul ul li:hover{color:#bc1b4e; background-color:#fff;}
+div#menu ul ul li { width: 100%; height:40px; line-height:40px; }
+
+/* menu::level3 */
+div#menu ul ul ul {padding: 0;margin: -42px 0 0 103px !important;margin-left:152px;}
+
+/* colors */
+div#menu ul ul ul {  background-color:#00a2e6; }
+div#menu ul ul ul ul { background: rgb(38,38,38); }
+div#menu ul ul ul ul { background: rgb(35,35,35); }
+
+/* lava lamp */
+div#menu li.back {background: url("images/lava.png")/*tpa=http://www.junengjiaoyu.com/css/images/lava.png*/ no-repeat right -44px !important;background-image: url("images/lava.gif")/*tpa=http://www.junengjiaoyu.com/css/images/lava.gif*/;width: 13px; height: 44px;z-index: 8;position: absolute;margin: -1px 0 0 -5px;}
+div#menu li.back .left {background: url("images/lava.png")/*tpa=http://www.junengjiaoyu.com/css/images/lava.png*/ no-repeat top left !important;background-image: url("images/lava.gif")/*tpa=http://www.junengjiaoyu.com/css/images/lava.gif*/;height: 44px;margin-right: 8px;}
+
+
+/************左侧导航***************/
+ /* headNav */
+ .hide{display:none;}
+
+.w1020{width:190px;  margin-left:0px;}
+#nav{width:190px;float:left;height:45px;}
+ .navCon{height:54px;position:relative;z-index:11; padding-top:0px;}
+ .navCon .navCon-cate{width:189px;height:45px;line-height:38px;font-size:16px;text-indent:10px;background:#a30000;/*#A21C1D*/ color:#FFF;position:relative; text-align:center;}
+
+ .navCon .navCon-menu li{float:left;height:38px;line-height:38px;overflow:hidden;text-align:center;width:100px;}
+ .navCon .navCon-menu li a{color:#FFFFFF;display:block;font-size:14px;font-weight:bold;height:38px;line-height:37px;text-decoration:none;width:100px;}
+ .navCon .navCon-menu li a:hover .cur{color:#666666;text-decoration:none;}
+ .navCon .navCon-menu li a:hover .curMenu{background:#6A0000;color:#FFFFFF;}
+ .cateMenu ul{ width:190px; margin-top:1px;z-index:999999}
+ .navCon .navCon-cate .navCon-cate-title{height:45px;line-height:45px;font-size:16px;color:#FFFFFF;text-indent:7px;font-family:"Microsoft Yahei";background-color: #bc1b4e;}
+ .navCon .navCon-cate .hover{background-position:180px -41px;}
+ .navCon .navCon-cate .navCon-cate-title a{color:#ffffff;}
+ .navCon .navCon-cate .navCon-cate-title a:hover{text-decoration:none;}
+
+ .navCon .navCon-cate .cateMenu{position:absolute;left:0px;font-family:"微软雅黑";background-color: #00a2e6;cursor:pointer;}
+ .navCon .navCon-cate .cateMenu li{overflow:hidden;border-bottom: 1px solid #4dbeee; height:95px; line-height:56px;width:189px;z-index:999999 }
+ .navCon .navCon-cate .cateMenu li .cate-tag{width:134px;overflow:hidden;line-height:56px;}
+ .navCon .navCon-cate .cateMenu li .cate-tag strong{height:56px;line-height:56px;width:150px;display:block;text-indent:0px; text-align:left; font-size:14px; text-align:center}
+ .navCon .navCon-cate .cateMenu li .cate-tag strong a{font-size:14px;color:#fff;}
+ .navCon .navCon-cate .cateMenu li .cate-tag .listModel{text-indent:0px;}
+ .navCon .navCon-cate .cateMenu li .cate-tag .listModel p{height:24px; text-align:left; line-height:24px;}
+ .navCon .navCon-cate .cateMenu li .cate-tag .listModel a{font-size:12px;font-weight:normal;text-indent:0px;padding:0 11px 0 0;color: #fff;font-family:"Microsoft Yahei"}
+ .navCon .navCon-cate .cateMenu .on{background:#1593d3;width:190px}
+ .navCon .navCon-cate .cateMenu .on .cate-tag .listModel a{color:#FFFFFF;}
+
+.float-list-dnav{background:none repeat scroll 0 0 #8D0000;clear:both;font-size:14px;font-weight:bold;height:47px;line-height:47px;width:210px;}
+.float-list-dnav a{color:#FFFFFF;margin:0 10px 0 10px;}
+.float-list-dnav a:hover{color:#ffffff;}
+
+ .navCon .navCon-cate .cateMenu .list-item{width:400px; height:70px; border:1px solid #A7A7A7;border-left:none;background:#ffffff;position:absolute;left:190px;top:0px; 
+	/*-moz-box-shadow:5px 5px 5px rgba(0,0,0,.2),1px -3px 5px rgba(0,0,0,.2),3px 0 3px rgba(0,0,0,.2) inset;
+	-webkit-box-shadow:5px 5px 5px rgba(0,0,0,.2),1px -3px 5px rgba(0,0,0,.2),3px 0 3px rgba(0,0,0,.2) inset;
+	box-shadow:5px 5px 5px rgba(0,0,0,.2),1px -3px 5px rgba(0,0,0,.2),3px 0 3px rgba(0,0,0,.2) inset;*/
+}
+ .navCon .navCon-cate .cateMenu .list-item .itemleft{width:400px;float:left;padding: 0px 0px 0px 0px; height:70px;
+border-right: 1px #ddd solid;
+}
+ .navCon .navCon-cate .cateMenu .list-item .itemright{width:100px;float:right;}
+ .navCon .navCon-cate .cateMenu .list-item dl{padding: 7px 0 0px 35px;overflow: hidden;}
+ .navCon .navCon-cate .cateMenu .list-item dt{font-size: 12px;color: #000;line-height: 22px;font-style: normal;font-variant: normal;font-weight: 700;float: left;font-size-adjust: none;font-stretch: normal;}
+ .navCon .navCon-cate .cateMenu .list-item dd{line-height: 22px;overflow: hidden; width:400px;}
+ .navCon .navCon-cate .cateMenu .list-item dd a{color:#646464;margin-right:5px;height:22px;overflow:hidden;display:block;float:left;margin-bottom:5px; }
+ .navCon .navCon-cate .cateMenu .list-item dd a:hover{color:#00a2e6;}
+
+ .navCon .navCon-cate .cateMenu .list-item .itemright .news-list{padding-left:10px;}
+ .navCon .navCon-cate .cateMenu .list-item .itemright .news-list p{line-height:24px;text-indent:0px;font-size:12px;font-weight:normal;color:#000; }
+ .navCon .navCon-cate .cateMenu .list-item .itemright .news-list p a{color:#646464;}
+ .navCon .navCon-cate .cateMenu .list-item .itemright .news-list p a:hover{color:#000;}
+
+ .navCon .navCon-cate .cateMenu .list-item .itemright .ad-list{padding-left:10px;}
+ .navCon .navCon-cate .cateMenu .list-item .itemright .ad-list a{display:block;width:190px;height:100px;text-indent:0px;margin-bottom:8px;overflow:hidden;}
+.mod_cate1{padding: 8px 0 9px 0; height:80px;}
+.arrow_dot1 { width:10px;height:10px;overflow:hidden;margin-top:8px; margin-left:25px; }
+.mod_subcate_line1{ width: 100%;height: 1px;clear: both;font-size: 0px;margin-bottom: 5px;border-top: 5px #fff solid;overflow: hidden;display: block;}
+
+
+* { margin:0;padding:0;}
+body {  }
+div#menu { margin:5px auto; }
+div#copyright {font:11px 'Trebuchet MS';color:#222;text-indent:30px;padding:40px 0 0 0;}
+div#copyright a { color:#aaa; }
+div#copyright a:hover { color:#222; }
+
+
+
+/*分页*/
+.showpages {
+    display: block;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    margin: 20px 0px 20px 0;
+	text-align:center;
+    width: 742px;
+}
+.showpages a {
+    font-size: 10px;
+    line-height: 20px;
+    font-family:宋体;
+    color:#333;
+}
+.showpages a:link, .showpages a:visited {
+    background-color: #f4f4f4;
+    border: 1px solid #e4e4e4;
+
+    font-size: 12px;
+    margin: 2px 2px 2px 5px;
+    padding: 1px 5px;
+    text-decoration: none;
+
+}
+.showpages a:hover {
+    background-color: #dd271a;
+    border: 1px solid #dd271a;
+    color: #FFFFFF;
+    text-decoration: none;
+
+}
+.showpages a.visited {
+    background-color: #dd271a;
+    border: 1px solid #dd271a;
+    color: #FFFFFF;
+    padding: 1px 5px;
+    text-decoration: none;font-weight:bold;
+}
+.showpageSpan {
+    background-color: #FFFFFF;
+    border: 1px solid #dd271a;
+    color: #72be13;
+    margin: 2px 2px 2px 5px;
+    padding: 3px 5px;
+    text-decoration: none;
+}
